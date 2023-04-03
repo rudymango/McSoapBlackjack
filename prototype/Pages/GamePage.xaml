@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="prototype.Pages.GamePage"
+             Title="McSoap's Blackjack">
+
+    <!-- Game View -->
+
+    <Grid RowDefinitions="250, 100, 250"
+          ColumnDefinitions="250, *, 250"
+          RowSpacing="10"
+          ColumnSpacing="10"
+          BackgroundColor="DarkGreen">
+
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               BackgroundColor="Gray"
+               Text="Dealer's Hand: 13"
+               FontSize="Subtitle"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"/>
+
+        <!--Dealer's Hand-->
+
+        <HorizontalStackLayout Grid.Row="0"
+                               Grid.Column="1"
+                               Spacing="-10"
+                               Padding="25"
+                               HorizontalOptions="Center">
+
+            <Label BackgroundColor="Yellow" Text="Sample Card" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="Orange" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="Red" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="DarkGray" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="DarkRed" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="IndianRed" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+
+        </HorizontalStackLayout>
+
+        <!-- Decorative Drawing Deck -->
+
+        <Image Grid.Row="0"
+               Grid.Column="2"
+               BackgroundColor="Red"
+               />
+
+        <!-- Player's Money (Starts at 100) -->
+
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               Text="Your Money: $1000"
+               FontSize="Subtitle"
+               Background="Green"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"/>
+
+        <!-- Betting Selection Display or Pot Display-->
+
+        <Label Grid.Row="1"
+               Grid.Column="1"
+               Text="Game Information"
+               FontSize="Subtitle"
+               Background="Green"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"/>
+
+        <!-- Filler -->
+
+        <Label Grid.Row="1"
+               Grid.Column="2"
+               BackgroundColor="Gray"/>
+
+        <!-- Value of player's hand -->
+
+        <Label Grid.Row="2"
+               Grid.Column="0"
+               Text="Your Hand: 78"
+               FontSize="Subtitle"
+               Background="Gray"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"/>
+
+        <!--Player's Hand-->
+
+        <HorizontalStackLayout Grid.Row="2"
+                               Grid.Column="1"
+                               Spacing="-10"
+                               Padding="25"
+                               HorizontalOptions="Center">
+
+            <Label BackgroundColor="Yellow" Text="Sample Card" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="Orange" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="Red" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="DarkGray" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="DarkRed" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Label BackgroundColor="IndianRed" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+
+        </HorizontalStackLayout>
+
+        <!-- Game Selection -->
+
+        <VerticalStackLayout Grid.Row="2"
+                             Grid.Column="2"
+                             Spacing="10"
+                             Padding="25"
+                             BackgroundColor="Green">
+
+            <Button Grid.Row="2"
+                    Grid.Column="2"
+                    BackgroundColor="Blue"
+                    Text="Hit"
+                    HorizontalOptions="Center"
+                    MinimumWidthRequest="200"/>
+
+            <Button Grid.Row="2"
+                    Grid.Column="2"
+                    BackgroundColor="Blue"
+                    Text="Stand"
+                    HorizontalOptions="Center"
+                    MinimumWidthRequest="200"/>
+
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>
