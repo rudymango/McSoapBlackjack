@@ -12,10 +12,12 @@
           ColumnSpacing="10"
           BackgroundColor="DarkGreen">
 
+        <!-- Information on Dealer's Hand -->
+        
         <Label Grid.Row="0"
                Grid.Column="0"
                BackgroundColor="Gray"
-               Text="Dealer's Hand: 13"
+               Text="Dealer's Hand: 10"
                FontSize="Subtitle"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"/>
@@ -24,25 +26,24 @@
 
         <HorizontalStackLayout Grid.Row="0"
                                Grid.Column="1"
-                               Spacing="-10"
                                Padding="25"
                                HorizontalOptions="Center">
 
-            <Label BackgroundColor="Yellow" Text="Sample Card" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="Orange" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="Red" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="DarkGray" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="DarkRed" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="IndianRed" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <Image Source="backcard.png" />
+            <Image Source="tenspades.png" />
 
         </HorizontalStackLayout>
 
         <!-- Decorative Drawing Deck -->
 
-        <Image Grid.Row="0"
-               Grid.Column="2"
-               BackgroundColor="Red"
-               />
+        <HorizontalStackLayout Grid.Row="0"
+                               Grid.Column="2"
+                               Padding="25"
+                               HorizontalOptions="Center">
+
+            <Image Source="backcard.png"/>
+
+        </HorizontalStackLayout>
 
         <!-- Player's Money (Starts at 100) -->
 
@@ -74,7 +75,7 @@
 
         <Label Grid.Row="2"
                Grid.Column="0"
-               Text="Your Hand: 78"
+               Text="Your Hand: 20"
                FontSize="Subtitle"
                Background="Gray"
                HorizontalTextAlignment="Center"
@@ -84,16 +85,12 @@
 
         <HorizontalStackLayout Grid.Row="2"
                                Grid.Column="1"
-                               Spacing="-10"
                                Padding="25"
                                HorizontalOptions="Center">
 
-            <Label BackgroundColor="Yellow" Text="Sample Card" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="Orange" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="Red" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="DarkGray" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="DarkRed" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
-            <Label BackgroundColor="IndianRed" Text="Test" MinimumWidthRequest="100" MinimumHeightRequest="200"/>
+            <CollectionView>
+
+            </CollectionView>
 
         </HorizontalStackLayout>
 
