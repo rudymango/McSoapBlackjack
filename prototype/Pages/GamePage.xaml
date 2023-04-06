@@ -66,9 +66,9 @@
 
         <!-- Filler -->
 
-        <Label Grid.Row="1"
-               Grid.Column="2"
-               BackgroundColor="Gray"/>
+        <Label Grid.Row="2"
+               Grid.Column="1"
+               BackgroundColor="Grey"/>
 
         <!-- Value of player's hand -->
 
@@ -107,17 +107,25 @@
 
             <Button Grid.Row="2"
                     Grid.Column="2"
-                    BackgroundColor="Blue"
+                    BackgroundColor="Black"
+                    TextColor="White"
                     Text="Hit"
                     HorizontalOptions="Center"
                     MinimumWidthRequest="200"/>
 
             <Button Grid.Row="2"
                     Grid.Column="2"
-                    BackgroundColor="Blue"
+                    BackgroundColor="Black"
+                    TextColor="White"
                     Text="Stand"
                     HorizontalOptions="Center"
                     MinimumWidthRequest="200"/>
+
+            <Button Grid.Row="2"
+                    Grid.Column="2"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    Text="Leaderboard"/>
 
         </VerticalStackLayout>
     </Grid>
