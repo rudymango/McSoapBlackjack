@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="prototype.Pages.LoginPage">
+
+    <ScrollView BackgroundColor="DarkGreen">
+
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30"
+            VerticalOptions="Center"
+            HorizontalOptions="CenterAndExpand"
+
+            BackgroundColor="MintCream">
+
+            <Label Text="Login" FontSize="Title" HorizontalTextAlignment="Center"/>
+
+            <Entry Text="username" />
+
+            <Entry Text="password" />
+
+            <HorizontalStackLayout Spacing="10">
+
+                <Button Text="Login" />
+                <Button Text="Signup" />
+
+            </HorizontalStackLayout>
+
+            <Button Text="Play as Guest" FontAttributes="Italic" Pressed="ToGamePage"/>
+
+            <Button Text="Leaderboard" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
