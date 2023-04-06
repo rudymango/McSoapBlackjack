@@ -11,24 +11,24 @@
             VerticalOptions="Center"
             HorizontalOptions="CenterAndExpand"
 
-            BackgroundColor="MintCream">
+            BackgroundColor="Green">
 
-            <Label Text="Login" FontSize="Title" HorizontalTextAlignment="Center"/>
+            <Label Text="Login" FontSize="Title" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White"/>
 
-            <Entry Text="username" />
+            <Entry Text="username" TextColor="Black" Background="White"/>
 
-            <Entry Text="password" />
+            <Entry Text="password" TextColor="Black" Background="white"/>
 
             <HorizontalStackLayout Spacing="10">
 
-                <Button Text="Login" />
-                <Button Text="Signup" />
+                <Button Text="Login" TextColor="White" Background="Black"/>
+                <Button Text="Signup" TextColor="White" Background="Black"/>
 
             </HorizontalStackLayout>
 
-            <Button Text="Play as Guest" FontAttributes="Italic" Pressed="ToGamePage"/>
+            <Button Text="Play as Guest" FontAttributes="Italic" Pressed="ToGamePage" TextColor="White" Background="Black"/>
 
-            <Button Text="Leaderboard" />
+            <Button Text="Leaderboard" TextColor="White" Background="Black"/>
 
         </VerticalStackLayout>
     </ScrollView>
