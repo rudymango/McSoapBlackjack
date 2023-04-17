@@ -12,11 +12,11 @@
           ColumnSpacing="10"
           BackgroundColor="DarkGreen">
 
-        <!-- Information on Dealer's Hand -->
+        <!-- Value of Dealer's Hand -->
         
         <Label Grid.Row="0"
                Grid.Column="0"
-               BackgroundColor="Gray"
+               BackgroundColor="Green"
                Text="Dealer's Hand: 10"
                FontSize="Subtitle"
                HorizontalTextAlignment="Center"
@@ -24,17 +24,29 @@
 
         <!--Dealer's Hand-->
 
-        <HorizontalStackLayout Grid.Row="0"
-                               Grid.Column="1"
-                               Padding="25"
-                               HorizontalOptions="Center">
+        <CollectionView x:Name="DealerHand"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        ItemsLayout="HorizontalList"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Image}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
-            <Image Source="backcard.png" />
-            <Image Source="tenspades.png" />
-
-        </HorizontalStackLayout>
-
-        <!-- Decorative Drawing Deck -->
+        <!-- Decorative Card Deck -->
 
         <HorizontalStackLayout Grid.Row="0"
                                Grid.Column="2"
@@ -61,15 +73,15 @@
                Grid.Column="1"
                Text="Game Information"
                FontSize="Subtitle"
-               Background="Green"
+               Background="DarkGreen"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"/>
 
         <!-- Filler -->
 
-        <Label Grid.Row="2"
-               Grid.Column="1"
-               BackgroundColor="Grey"/>
+        <Label Grid.Row="1"
+               Grid.Column="2"
+               BackgroundColor="Green"/>
 
         <!-- Value of player's hand -->
 
@@ -77,22 +89,33 @@
                Grid.Column="0"
                Text="Your Hand: 20"
                FontSize="Subtitle"
-               Background="Gray"
+               Background="Green"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"/>
 
         <!--Player's Hand-->
 
-        <HorizontalStackLayout Grid.Row="2"
-                               Grid.Column="1"
-                               Padding="25"
-                               HorizontalOptions="Center">
-
-            <CollectionView>
-
-            </CollectionView>
-
-        </HorizontalStackLayout>
+        <CollectionView x:Name="PlayerHand"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        ItemsLayout="HorizontalList"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Image}"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
 
         <!-- Game Selection -->
 
@@ -123,6 +146,35 @@
                     BackgroundColor="Black"
                     TextColor="White"
                     Text="Leaderboard"/>
+
+            <HorizontalStackLayout HorizontalOptions="Center">
+
+                <Button Grid.Row="2"
+                    Grid.Column="2"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    Text="1"/>
+
+                <Button Grid.Row="2"
+                    Grid.Column="2"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    Text="5"/>
+
+                <Button Grid.Row="2"
+                    Grid.Column="2"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    Text="10"/>
+
+
+                <Button Grid.Row="2"
+                    Grid.Column="2"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    Text="15"/>
+
+            </HorizontalStackLayout>
 
         </VerticalStackLayout>
     </Grid>
