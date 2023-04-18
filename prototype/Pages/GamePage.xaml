@@ -40,7 +40,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Image}"/>
+                        <Image Source="{Binding ImageSource}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
@@ -111,7 +111,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Image}"/>
+                        <Image Source="{Binding ImageSource}"/>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

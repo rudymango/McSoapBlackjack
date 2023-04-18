@@ -5,17 +5,17 @@ namespace prototype.Pages;
 
 public partial class GamePage : ContentPage
 {
-	ObservableCollection<Card> card;
+	ObservableCollection<Card> hand;
 	public GamePage()
 	{
 		InitializeComponent();
-		card = new ObservableCollection<Card>()
+		hand = new ObservableCollection<Card>()
 		{
-			new Card{ID = "10_of_Spades", Image = "https://publicdomainvectors.org/photos/nicubunu_Ornamental_deck_10_of_spades.png"},
-            new Card{ID = "10_of_Spades", Image = "https://publicdomainvectors.org/photos/nicubunu_Ornamental_deck_10_of_spades.png"},
+			new Card(Card.Ranks.Three, Card.Suits.Spades),
+			new Card(Card.Ranks.Four, Card.Suits.Hearts),
         };
 
-        DealerHand.ItemsSource = card;
-		PlayerHand.ItemsSource = card;
+        DealerHand.ItemsSource = hand;
+		PlayerHand.ItemsSource = hand;
     }
 }
