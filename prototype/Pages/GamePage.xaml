@@ -14,10 +14,10 @@
 
         <!-- Value of Dealer's Hand -->
         
-        <Label Grid.Row="0"
+        <Label x:Name="ValueOfDealersHand"
+               Grid.Row="0"
                Grid.Column="0"
                BackgroundColor="Green"
-               Text="Dealer's Hand: 10"
                FontSize="Subtitle"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"/>
@@ -85,9 +85,9 @@
 
         <!-- Value of player's hand -->
 
-        <Label Grid.Row="2"
+        <Label x:Name="ValueOfPlayersHand"
+               Grid.Row="2"
                Grid.Column="0"
-               Text="Your Hand: 20"
                FontSize="Subtitle"
                Background="Green"
                HorizontalTextAlignment="Center"
