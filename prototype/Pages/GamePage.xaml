@@ -24,7 +24,7 @@
 
         <!--Dealer's Hand-->
 
-        <CollectionView x:Name="DealerHand"
+        <CollectionView x:Name="GameViewDealersHand"
                         Grid.Row="0"
                         Grid.Column="1"
                         ItemsLayout="HorizontalList"
@@ -95,7 +95,7 @@
 
         <!--Player's Hand-->
 
-        <CollectionView x:Name="PlayerHand"
+        <CollectionView x:Name="GameViewPlayersHand"
                         Grid.Row="2"
                         Grid.Column="1"
                         ItemsLayout="HorizontalList"
@@ -145,7 +145,8 @@
                     Grid.Column="2"
                     BackgroundColor="Black"
                     TextColor="White"
-                    Text="Leaderboard"/>
+                    Text="Begin"
+                    Clicked="BeginGame"/>
 
             <HorizontalStackLayout HorizontalOptions="Center">
 
