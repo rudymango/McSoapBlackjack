@@ -5,22 +5,22 @@ namespace prototype.Pages;
 
 public partial class GamePage : ContentPage
 {
-	ObservableCollection<Card> hand;
+	// Stack<Card> Deck;
+	ObservableCollection<Card> PlayersHand;
+	ObservableCollection<Card> DealersHand;
+
 	public GamePage()
 	{
 		InitializeComponent();
-		hand = new ObservableCollection<Card>()
-		{
-            new Card(Card.Ranks.Ace, Card.Suits.Hearts),
-            new Card(Card.Ranks.Three, Card.Suits.Spades),
-			new Card(Card.Ranks.Four, Card.Suits.Hearts),
-        };
 
-        DealerHand.ItemsSource = hand;
-		PlayerHand.ItemsSource = hand;
+		PlayersHand = new ObservableCollection<Card>();
+		DealersHand = new ObservableCollection<Card>();
 
-		ValueOfDealersHand.Text = "Dealer's Hand: " + ValueOfHand(hand).ToString();
-		ValueOfPlayersHand.Text = "Player's Hand: " + ValueOfHand(hand).ToString();
+        GameViewDealersHand.ItemsSource = PlayersHand;
+		GameViewPlayersHand.ItemsSource = DealersHand;
+
+		ValueOfDealersHand.Text = "Dealer's Hand: " + ValueOfHand(PlayersHand).ToString();
+		ValueOfPlayersHand.Text = "Player's Hand: " + ValueOfHand(DealersHand).ToString();
     }
 	private int ValueOfHand(ObservableCollection<Card> hand)
 	{
@@ -45,4 +45,22 @@ public partial class GamePage : ContentPage
 
 		return sum;
 	}
+    private void BeginGame(object sender, EventArgs e)
+    {
+        Stack<Card> Deck = new Stack<Card>();
+
+        for (int i = 1; i <= 13; i++)
+        {
+            for (int j = 1; j <= 4; j++)
+            {
+                Card tmp = new Card((Card.Ranks)i, (Card.Suits)j);
+                Deck.Push(tmp);
+            }
+        }
+
+        PlayersHand.Add(Deck.Pop());
+		PlayersHand.Add(Deck.Pop());
+		DealersHand.Add(Deck.Pop());
+        DealersHand.Add(Deck.Pop());
+    }
 }

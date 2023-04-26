@@ -16,7 +16,7 @@ namespace prototype.Classes
         public Suits Suit { get; private set; }
         public enum Suits
         {
-            Clubs, Diamonds, Hearts, Spades
+            Clubs = 1, Diamonds = 2, Hearts = 3, Spades = 4
         }
 
         public enum Ranks
