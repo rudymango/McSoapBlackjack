@@ -1,54 +1,26 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using prototype.Classes;
 
 namespace prototype.Pages;
 
 public partial class GamePage : ContentPage
 {
-	// Stack<Card> Deck;
-	ObservableCollection<Card> PlayersHand;
-	ObservableCollection<Card> DealersHand;
+    Stack<Card> Deck;
+    Player PersonPlayer;
+	Player DealerPlayer;
 
 	public GamePage()
 	{
 		InitializeComponent();
-
-		PlayersHand = new ObservableCollection<Card>();
-		DealersHand = new ObservableCollection<Card>();
-
-        GameViewDealersHand.ItemsSource = PlayersHand;
-		GameViewPlayersHand.ItemsSource = DealersHand;
-
-		ValueOfDealersHand.Text = "Dealer's Hand: " + ValueOfHand(PlayersHand).ToString();
-		ValueOfPlayersHand.Text = "Player's Hand: " + ValueOfHand(DealersHand).ToString();
+        Deck = new Stack<Card>();
+        PersonPlayer = new Player();
+		DealerPlayer = new Player();
     }
-	private int ValueOfHand(ObservableCollection<Card> hand)
-	{
-		int sum = 0;
-		int amountOfAces = 0;
 
-		foreach (Card card in hand)
-		{
-			if (card.Rank != Card.Ranks.Ace)
-				sum += card.Value;
-			else
-				amountOfAces += 1;
-		}
-
-		for (int i = 0; i < amountOfAces; i++)
-		{
-			if (sum + 11 <= 21)
-				sum += 11;
-			else
-				sum += 1;
-		}
-
-		return sum;
-	}
     private void BeginGame(object sender, EventArgs e)
     {
-        Stack<Card> Deck = new Stack<Card>();
-
+        Button button = (Button)sender;
         for (int i = 1; i <= 13; i++)
         {
             for (int j = 1; j <= 4; j++)
@@ -57,10 +29,39 @@ public partial class GamePage : ContentPage
                 Deck.Push(tmp);
             }
         }
+        PersonPlayer.Hand.Add(Deck.Pop());
+        PersonPlayer.Hand.Add(Deck.Pop());
+        DealerPlayer.Hand.Add(Deck.Pop());
+        DealerPlayer.Hand.Add(Deck.Pop());
+        GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
+        GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
+        ValueOfDealersHand.Text = PersonPlayer.HandValue.ToString();
+        ValueOfPlayersHand.Text = PersonPlayer.HandValue.ToString();
+		GameInformationLabel.Text = "Game Information";
+		button.IsEnabled = false;
+    }
 
-        PlayersHand.Add(Deck.Pop());
-		PlayersHand.Add(Deck.Pop());
-		DealersHand.Add(Deck.Pop());
-        DealersHand.Add(Deck.Pop());
+    private void DetermineWinCondition()
+    {
+        if (PersonPlayer.HandValue > DealerPlayer.HandValue)
+            GameInformationLabel.Text = "You Win!";
+        else if (PersonPlayer.HandValue < DealerPlayer.HandValue)
+            GameInformationLabel.Text = "You Lose.";
+        else
+            GameInformationLabel.Text = "Draw!";
+    }
+
+    private void PlayerStands(object sender, EventArgs e)
+    {
+        DetermineWinCondition();
+        // ...
+        // clear hands,
+        // reshuffle,
+    }
+
+    private void PlayerHits(object sender, EventArgs e)
+    {
+        PersonPlayer.Hand.Add(Deck.Pop());
+        ValueOfPlayersHand.Text = PersonPlayer.HandValue.ToString();
     }
 }

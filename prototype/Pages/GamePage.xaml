@@ -75,7 +75,8 @@
                FontSize="Subtitle"
                Background="DarkGreen"
                HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"/>
+               VerticalTextAlignment="Center"
+               x:Name="GameInformationLabel"/>
 
         <!-- Filler -->
 
@@ -131,7 +132,8 @@
                     TextColor="White"
                     Text="Hit"
                     HorizontalOptions="Center"
-                    MinimumWidthRequest="200"/>
+                    MinimumWidthRequest="200"
+                    Clicked="PlayerHits"/>
 
             <Button Grid.Row="2"
                     Grid.Column="2"
@@ -139,7 +141,8 @@
                     TextColor="White"
                     Text="Stand"
                     HorizontalOptions="Center"
-                    MinimumWidthRequest="200"/>
+                    MinimumWidthRequest="200"
+                    Clicked="PlayerStands"/>
 
             <Button Grid.Row="2"
                     Grid.Column="2"
@@ -147,35 +150,6 @@
                     TextColor="White"
                     Text="Begin"
                     Clicked="BeginGame"/>
-
-            <HorizontalStackLayout HorizontalOptions="Center">
-
-                <Button Grid.Row="2"
-                    Grid.Column="2"
-                    BackgroundColor="Black"
-                    TextColor="White"
-                    Text="1"/>
-
-                <Button Grid.Row="2"
-                    Grid.Column="2"
-                    BackgroundColor="Black"
-                    TextColor="White"
-                    Text="5"/>
-
-                <Button Grid.Row="2"
-                    Grid.Column="2"
-                    BackgroundColor="Black"
-                    TextColor="White"
-                    Text="10"/>
-
-
-                <Button Grid.Row="2"
-                    Grid.Column="2"
-                    BackgroundColor="Black"
-                    TextColor="White"
-                    Text="15"/>
-
-            </HorizontalStackLayout>
 
         </VerticalStackLayout>
     </Grid>
