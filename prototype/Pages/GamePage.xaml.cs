@@ -14,7 +14,6 @@ public partial class GamePage : ContentPage
 	public GamePage()
 	{
 		InitializeComponent();
-        GameDeck = new Deck();
         PersonPlayer = new Player();
 		DealerPlayer = new Player();
         YourMoney.Text = "Your Money: $" + PlayerMoney;
@@ -23,12 +22,13 @@ public partial class GamePage : ContentPage
 
     private void BeginGame(object sender, EventArgs e)
     {
-        SetGameButtons();
         if(Bet <= 0)
         {
             GameInformationLabel.Text = "Insufficient Bet Amount, $" + Bet + " < $" + "0. ";
             return;
         }
+        GameDeck = new Deck();
+        SetGameButtons();
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
@@ -39,24 +39,36 @@ public partial class GamePage : ContentPage
         GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
         ValueOfPlayersHand.Text = PersonPlayer.HandValue.ToString();
         ValueOfDealersHand.Text = DealerPlayer.HandValue.ToString();
+        if(PersonPlayer.HandValue >= 21)
+            DetermineWinCondition();
     }
 
     private void DetermineWinCondition()
     {
-        if (PersonPlayer.HandValue > DealerPlayer.HandValue)
+        if(PersonPlayer.HandValue > 21)
         {
-            GameInformationLabel.Text = "You Win! +$" + Bet * 2;
+            GameInformationLabel.Text = "Bust! -$" + Bet;
+        }
+        else if (DealerPlayer.HandValue > 21)
+        {
+            GameInformationLabel.Text = "Dealer Busts! +$" + Bet * 2;
+            PlayerMoney += Bet * 2;
+        }
+        else if (PersonPlayer.HandValue > DealerPlayer.HandValue)
+        {
+            GameInformationLabel.Text = "You Win +$" + Bet * 2;
             PlayerMoney += Bet * 2;
         }
         else if (PersonPlayer.HandValue < DealerPlayer.HandValue)
         {
-            GameInformationLabel.Text = "You Lose. -$" + Bet;
+            GameInformationLabel.Text = "You Lose -$" + Bet;
         }
         else
         {
             GameInformationLabel.Text = "Draw!";
             PlayerMoney += Bet;
         }
+        ShowDealerCards();
         YourMoney.Text = "Your Money: $" + PlayerMoney;
         Bet = 0;
         SetDefaultButtons();
@@ -64,11 +76,7 @@ public partial class GamePage : ContentPage
 
     private void PlayerStands(object sender, EventArgs e)
     {
-        Card tmp = DealerPlayer.Hand[1];
-        tmp.ShowCard();
-        DealerPlayer.Hand.RemoveAt(1);
-        DealerPlayer.Hand.Add(tmp);
-        GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
+        ShowDealerCards();
         DealerDrawAlgorithm();
         DetermineWinCondition();
     }
@@ -77,6 +85,8 @@ public partial class GamePage : ContentPage
     {
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         ValueOfPlayersHand.Text = PersonPlayer.HandValue.ToString();
+        if (PersonPlayer.HandValue >= 21)
+            DetermineWinCondition();
     }
 
     async void PlaceBet(object sender, EventArgs e)
@@ -85,17 +95,11 @@ public partial class GamePage : ContentPage
         string result = await DisplayPromptAsync("Bet", "Place your bet.");
         int tmp = 0;
         int previousBet = Bet;
-        PersonPlayer.Hand.Clear();
-        DealerPlayer.Hand.Clear();
-        GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
-        GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
-        ValueOfPlayersHand.Text = "";
-        ValueOfDealersHand.Text = "";
         try
         {
             tmp = Int16.Parse(result);
-            if (tmp < 0)
-                throw new ArithmeticException("Insufficient Bet Amount, $" + tmp + " < $" + "0. ");
+            if (tmp <= 0)
+                throw new ArithmeticException("Insufficient Bet Amount, $" + tmp + " <= $" + "0. ");
             if (PlayerMoney + previousBet - tmp < 0)
                 throw new ArithmeticException("Insufficient Funds, $" + tmp + " > $" + PlayerMoney + ". ");
         }
@@ -104,6 +108,12 @@ public partial class GamePage : ContentPage
             GameInformationLabel.Text = ex.Message + " Pot: $" + previousBet;
             return;
         }
+        PersonPlayer.Hand.Clear();
+        DealerPlayer.Hand.Clear();
+        GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
+        GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
+        ValueOfPlayersHand.Text = "";
+        ValueOfDealersHand.Text = "";
         Bet = tmp;
         PlayerMoney += previousBet;
         PlayerMoney -= Bet;
@@ -134,5 +144,15 @@ public partial class GamePage : ContentPage
         StandButton.IsEnabled = true;
         BeginGameButton.IsEnabled = false;
         PlaceBetButton.IsEnabled = false;
+    }
+
+    private void ShowDealerCards()
+    {
+        Card tmp = DealerPlayer.Hand[1];
+        tmp.ShowCard();
+        DealerPlayer.Hand.RemoveAt(1);
+        DealerPlayer.Hand.Add(tmp);
+        GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
+        ValueOfDealersHand.Text = DealerPlayer.HandValue.ToString();
     }
 }

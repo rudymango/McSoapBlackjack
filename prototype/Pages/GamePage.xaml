@@ -18,7 +18,7 @@
                Grid.Row="0"
                Grid.Column="0"
                BackgroundColor="Green"
-               FontSize="Subtitle"
+               FontSize="Header"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"/>
 
@@ -62,7 +62,7 @@
         <Label Grid.Row="1"
                Grid.Column="0"
                Text="Your Money: "
-               FontSize="Subtitle"
+               FontSize="Title"
                Background="Green"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"
@@ -72,8 +72,8 @@
 
         <Label Grid.Row="1"
                Grid.Column="1"
-               Text="Game Information"
-               FontSize="Subtitle"
+               Text="Place Bet!"
+               FontSize="Header"
                Background="DarkGreen"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"
@@ -90,7 +90,7 @@
         <Label x:Name="ValueOfPlayersHand"
                Grid.Row="2"
                Grid.Column="0"
-               FontSize="Subtitle"
+               FontSize="Header"
                Background="Green"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"/>

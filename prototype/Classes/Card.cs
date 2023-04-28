@@ -44,12 +44,14 @@ namespace prototype.Classes
 
         public void HideCard()
         {
+            IsHidden = true;
             ImageSource = "backcard.png";
             Value = 0;
         }
 
         public void ShowCard()
         {
+            IsHidden = false;
             ImageSource = Id + ".png";
             if (Rank >= Ranks.Two && Rank <= Ranks.Ten)
                 Value = (int)Rank;
