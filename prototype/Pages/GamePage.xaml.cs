@@ -18,33 +18,23 @@ public partial class GamePage : ContentPage
         PersonPlayer = new Player();
 		DealerPlayer = new Player();
         YourMoney.Text = "Your Money: $" + PlayerMoney;
-        StandButton.IsEnabled = false;
-        HitButton.IsEnabled = false;
-        BeginGameButton.IsEnabled = true;
-        PlaceBetButton.IsEnabled = true;
+        SetDefaultButtons();
     }
 
     private void BeginGame(object sender, EventArgs e)
     {
+        SetGameButtons();
         if(Bet <= 0)
         {
             GameInformationLabel.Text = "Insufficient Bet Amount, $" + Bet + " < $" + "0. ";
             return;
         }
-        BeginGameButton.IsEnabled = false;
-        PlaceBetButton.IsEnabled = false;
-        StandButton.IsEnabled = true;
-        HitButton.IsEnabled = true;
-        PersonPlayer.Hand.Clear();
-        DealerPlayer.Hand.Clear();
-        GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
-        GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
-        ValueOfPlayersHand.Text = "";
-        ValueOfDealersHand.Text = "";
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
-        DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
+        Card secondCardHidden = GameDeck.Cards.Pop();
+        secondCardHidden.HideCard();
+        DealerPlayer.Hand.Add(secondCardHidden);
         GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
         GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
         ValueOfPlayersHand.Text = PersonPlayer.HandValue.ToString();
@@ -69,14 +59,16 @@ public partial class GamePage : ContentPage
         }
         YourMoney.Text = "Your Money: $" + PlayerMoney;
         Bet = 0;
-        StandButton.IsEnabled = false;
-        HitButton.IsEnabled = false;
-        BeginGameButton.IsEnabled = true;
-        PlaceBetButton.IsEnabled= true;
+        SetDefaultButtons();
     }
 
     private void PlayerStands(object sender, EventArgs e)
     {
+        Card tmp = DealerPlayer.Hand[1];
+        tmp.ShowCard();
+        DealerPlayer.Hand.RemoveAt(1);
+        DealerPlayer.Hand.Add(tmp);
+        GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
         DealerDrawAlgorithm();
         DetermineWinCondition();
     }
@@ -97,6 +89,8 @@ public partial class GamePage : ContentPage
         DealerPlayer.Hand.Clear();
         GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
         GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
+        ValueOfPlayersHand.Text = "";
+        ValueOfDealersHand.Text = "";
         try
         {
             tmp = Int16.Parse(result);
@@ -121,9 +115,24 @@ public partial class GamePage : ContentPage
     {
         while(DealerPlayer.HandValue < 16)
         {
-            // Thread.Sleep(1000);
             DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
             ValueOfDealersHand.Text = DealerPlayer.HandValue.ToString();
         }
+    }
+
+    private void SetDefaultButtons()
+    {
+        HitButton.IsEnabled = false;
+        StandButton.IsEnabled = false;
+        BeginGameButton.IsEnabled = true;
+        PlaceBetButton.IsEnabled = true;
+    }
+
+    private void SetGameButtons()
+    {
+        HitButton.IsEnabled = true;
+        StandButton.IsEnabled = true;
+        BeginGameButton.IsEnabled = false;
+        PlaceBetButton.IsEnabled = false;
     }
 }
