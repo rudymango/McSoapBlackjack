@@ -17,14 +17,14 @@ public partial class GamePage : ContentPage
         GameDeck = new Deck();
         PersonPlayer = new Player();
 		DealerPlayer = new Player();
-        YourMoney.Text = "Your Money: " + PlayerMoney;
+        YourMoney.Text = "Your Money: $" + PlayerMoney;
     }
 
     private void BeginGame(object sender, EventArgs e)
     {
         if (Bet <= 0)
         {
-            GameInformationLabel.Text = "Insufficient Bet Amount: " + Bet;
+            GameInformationLabel.Text = "Insufficient Bet Amount: $" + Bet;
             return;
         }
         Button button = (Button)sender;
@@ -55,7 +55,7 @@ public partial class GamePage : ContentPage
             GameInformationLabel.Text = "Draw!";
             PlayerMoney += Bet;
         }
-        YourMoney.Text = "Your Money: " + PlayerMoney;
+        YourMoney.Text = "Your Money: $" + PlayerMoney;
         Bet = 0;
     }
 
@@ -93,6 +93,6 @@ public partial class GamePage : ContentPage
         PlayerMoney += previousBet;
         PlayerMoney -= Bet;
         GameInformationLabel.Text = "Pot: $" + Bet;
-        YourMoney.Text = "Your Money: " + PlayerMoney;
+        YourMoney.Text = "Your Money: $" + PlayerMoney;
     }
 }
