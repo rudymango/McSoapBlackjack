@@ -57,15 +57,16 @@
 
         </HorizontalStackLayout>
 
-        <!-- Player's Money (Starts at 100) -->
+        <!-- Player's Money (Starts at 1000) -->
 
         <Label Grid.Row="1"
                Grid.Column="0"
-               Text="Your Money: $1000"
+               Text="Your Money: "
                FontSize="Subtitle"
                Background="Green"
                HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"/>
+               VerticalTextAlignment="Center"
+               x:Name="YourMoney"/>
 
         <!-- Betting Selection Display or Pot Display-->
 
@@ -150,6 +151,13 @@
                     TextColor="White"
                     Text="Begin"
                     Clicked="BeginGame"/>
+
+            <Button Grid.Row="2"
+                    Grid.Column="2"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    Text="Place Bet"
+                    Clicked="PlaceBet"/>
 
         </VerticalStackLayout>
     </Grid>
