@@ -77,6 +77,7 @@ public partial class GamePage : ContentPage
 
     private void PlayerStands(object sender, EventArgs e)
     {
+        DealerDrawAlgorithm();
         DetermineWinCondition();
     }
 
@@ -114,5 +115,15 @@ public partial class GamePage : ContentPage
         PlayerMoney -= Bet;
         GameInformationLabel.Text = "Pot: $" + Bet;
         YourMoney.Text = "Your Money: $" + PlayerMoney;
+    }
+
+    private void DealerDrawAlgorithm()
+    {
+        while(DealerPlayer.HandValue < 16)
+        {
+            // Thread.Sleep(1000);
+            DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
+            ValueOfDealersHand.Text = DealerPlayer.HandValue.ToString();
+        }
     }
 }
