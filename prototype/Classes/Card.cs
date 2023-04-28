@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace prototype.Classes
         public Ranks Rank { get; private set; }
         public string ImageSource { get; private set; }
         public Suits Suit { get; private set; }
-        public bool IsHidden { get; set; }
+        public bool IsHidden { get; private set; }
         public enum Suits
         {
             Clubs = 1, Diamonds = 2, Hearts = 3, Spades = 4
@@ -33,6 +34,25 @@ namespace prototype.Classes
             ImageSource = "backcard.png";
             if(!IsHidden)
                 ImageSource = Id + ".png";
+            if (Rank >= Ranks.Two && Rank <= Ranks.Ten)
+                Value = (int)Rank;
+            else if (Rank >= Ranks.Jack)
+                Value = 10;
+            else if (Rank == Ranks.Ace)
+                Value = 11;
+        }
+
+        public void HideCard()
+        {
+            IsHidden = true;
+            ImageSource = "backcard.png";
+            Value = 0;
+        }
+
+        public void ShowCard()
+        {
+            IsHidden = false;
+            ImageSource = Id + ".png";
             if (Rank >= Ranks.Two && Rank <= Ranks.Ten)
                 Value = (int)Rank;
             else if (Rank >= Ranks.Jack)
