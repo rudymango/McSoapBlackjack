@@ -6,7 +6,7 @@ namespace prototype.Pages;
 
 public partial class GamePage : ContentPage
 {
-    Stack<Card> Deck;
+    Deck GameDeck;
     Player PersonPlayer;
 	Player DealerPlayer;
     int Bet = 0;
@@ -14,7 +14,7 @@ public partial class GamePage : ContentPage
 	public GamePage()
 	{
 		InitializeComponent();
-        Deck = new Stack<Card>();
+        GameDeck = new Deck();
         PersonPlayer = new Player();
 		DealerPlayer = new Player();
         YourMoney.Text = "Your Money: " + PlayerMoney;
@@ -28,22 +28,14 @@ public partial class GamePage : ContentPage
             return;
         }
         Button button = (Button)sender;
-        for (int i = 1; i <= 13; i++)
-        {
-            for (int j = 1; j <= 4; j++)
-            {
-                Card tmp = new Card((Card.Ranks)i, (Card.Suits)j);
-                Deck.Push(tmp);
-            }
-        }
-        PersonPlayer.Hand.Add(Deck.Pop());
-        PersonPlayer.Hand.Add(Deck.Pop());
-        DealerPlayer.Hand.Add(Deck.Pop());
-        DealerPlayer.Hand.Add(Deck.Pop());
+        PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
+        PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
+        DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
+        DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
         GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
         GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
-        ValueOfDealersHand.Text = PersonPlayer.HandValue.ToString();
         ValueOfPlayersHand.Text = PersonPlayer.HandValue.ToString();
+        ValueOfDealersHand.Text = DealerPlayer.HandValue.ToString();
 		button.IsEnabled = false;
     }
 
@@ -70,14 +62,11 @@ public partial class GamePage : ContentPage
     private void PlayerStands(object sender, EventArgs e)
     {
         DetermineWinCondition();
-        // ...
-        // clear hands,
-        // reshuffle,
     }
 
     private void PlayerHits(object sender, EventArgs e)
     {
-        PersonPlayer.Hand.Add(Deck.Pop());
+        PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         ValueOfPlayersHand.Text = PersonPlayer.HandValue.ToString();
     }
 
