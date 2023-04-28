@@ -18,16 +18,29 @@ public partial class GamePage : ContentPage
         PersonPlayer = new Player();
 		DealerPlayer = new Player();
         YourMoney.Text = "Your Money: $" + PlayerMoney;
+        StandButton.IsEnabled = false;
+        HitButton.IsEnabled = false;
+        BeginGameButton.IsEnabled = true;
+        PlaceBetButton.IsEnabled = true;
     }
 
     private void BeginGame(object sender, EventArgs e)
     {
-        if (Bet <= 0)
+        if(Bet <= 0)
         {
-            GameInformationLabel.Text = "Insufficient Bet Amount: $" + Bet;
+            GameInformationLabel.Text = "Insufficient Bet Amount, $" + Bet + " < $" + "0. ";
             return;
         }
-        Button button = (Button)sender;
+        BeginGameButton.IsEnabled = false;
+        PlaceBetButton.IsEnabled = false;
+        StandButton.IsEnabled = true;
+        HitButton.IsEnabled = true;
+        PersonPlayer.Hand.Clear();
+        DealerPlayer.Hand.Clear();
+        GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
+        GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
+        ValueOfPlayersHand.Text = "";
+        ValueOfDealersHand.Text = "";
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
@@ -36,7 +49,6 @@ public partial class GamePage : ContentPage
         GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
         ValueOfPlayersHand.Text = PersonPlayer.HandValue.ToString();
         ValueOfDealersHand.Text = DealerPlayer.HandValue.ToString();
-		button.IsEnabled = false;
     }
 
     private void DetermineWinCondition()
@@ -57,6 +69,10 @@ public partial class GamePage : ContentPage
         }
         YourMoney.Text = "Your Money: $" + PlayerMoney;
         Bet = 0;
+        StandButton.IsEnabled = false;
+        HitButton.IsEnabled = false;
+        BeginGameButton.IsEnabled = true;
+        PlaceBetButton.IsEnabled= true;
     }
 
     private void PlayerStands(object sender, EventArgs e)
@@ -76,6 +92,10 @@ public partial class GamePage : ContentPage
         string result = await DisplayPromptAsync("Bet", "Place your bet.");
         int tmp = 0;
         int previousBet = Bet;
+        PersonPlayer.Hand.Clear();
+        DealerPlayer.Hand.Clear();
+        GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
+        GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
         try
         {
             tmp = Int16.Parse(result);

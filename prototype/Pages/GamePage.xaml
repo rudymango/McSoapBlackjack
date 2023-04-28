@@ -134,7 +134,8 @@
                     Text="Hit"
                     HorizontalOptions="Center"
                     MinimumWidthRequest="200"
-                    Clicked="PlayerHits"/>
+                    Clicked="PlayerHits"
+                    x:Name="HitButton"/>
 
             <Button Grid.Row="2"
                     Grid.Column="2"
@@ -143,21 +144,24 @@
                     Text="Stand"
                     HorizontalOptions="Center"
                     MinimumWidthRequest="200"
-                    Clicked="PlayerStands"/>
+                    Clicked="PlayerStands"
+                    x:Name="StandButton"/>
 
             <Button Grid.Row="2"
                     Grid.Column="2"
                     BackgroundColor="Black"
                     TextColor="White"
                     Text="Begin"
-                    Clicked="BeginGame"/>
+                    Clicked="BeginGame"
+                    x:Name="BeginGameButton"/>
 
             <Button Grid.Row="2"
                     Grid.Column="2"
                     BackgroundColor="Black"
                     TextColor="White"
                     Text="Place Bet"
-                    Clicked="PlaceBet"/>
+                    Clicked="PlaceBet"
+                    x:Name="PlaceBetButton"/>
 
         </VerticalStackLayout>
     </Grid>
