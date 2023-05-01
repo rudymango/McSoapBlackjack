@@ -32,7 +32,8 @@ public partial class GamePage : ContentPage
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
-        Card secondCardHidden = GameDeck.Cards.Pop();
+        // Card secondCardHidden = GameDeck.Cards.Pop();
+        Card secondCardHidden = new Card(Card.Ranks.Ace, Card.Suits.Diamonds);
         secondCardHidden.HideCard();
         DealerPlayer.Hand.Add(secondCardHidden);
         GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
