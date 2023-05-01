@@ -39,7 +39,9 @@ namespace prototype.Classes
             {
                 foreach (Card card in hand)
                 {
-                    if (card.Rank != Card.Ranks.Ace)
+                    if (card.IsHidden)
+                        break;
+                    else if (card.Rank != Card.Ranks.Ace)
                         sum += card.Value;
                     else
                         amountOfAces += 1;
