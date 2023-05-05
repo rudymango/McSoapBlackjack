@@ -32,21 +32,25 @@ public partial class GamePage : ContentPage
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         PersonPlayer.Hand.Add(GameDeck.Cards.Pop());
         DealerPlayer.Hand.Add(GameDeck.Cards.Pop());
-        // Card secondCardHidden = GameDeck.Cards.Pop();
-        Card secondCardHidden = new Card(Card.Ranks.Ace, Card.Suits.Diamonds);
+        Card secondCardHidden = GameDeck.Cards.Pop();
         secondCardHidden.HideCard();
         DealerPlayer.Hand.Add(secondCardHidden);
         GameViewPlayersHand.ItemsSource = PersonPlayer.Hand;
         GameViewDealersHand.ItemsSource = DealerPlayer.Hand;
         ValueOfPlayersHand.Text = PersonPlayer.HandValue.ToString();
         ValueOfDealersHand.Text = DealerPlayer.HandValue.ToString();
-        if(PersonPlayer.HandValue >= 21)
+        if(PersonPlayer.HandValue >= 21 || DealerPlayer.HandValue >= 21)
             DetermineWinCondition();
     }
 
     private void DetermineWinCondition()
     {
-        if(PersonPlayer.HandValue > 21)
+        if(PersonPlayer.HandValue == 21 && DealerPlayer.HandValue == 21)
+        {
+            GameInformationLabel.Text = "Push!";
+            PlayerMoney += Bet;
+        }
+        else if(PersonPlayer.HandValue > 21)
         {
             GameInformationLabel.Text = "Bust! -$" + Bet;
         }
@@ -66,7 +70,7 @@ public partial class GamePage : ContentPage
         }
         else
         {
-            GameInformationLabel.Text = "Draw!";
+            GameInformationLabel.Text = "Push!";
             PlayerMoney += Bet;
         }
         ShowDealerCards();
